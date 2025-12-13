@@ -2,10 +2,13 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,11 +19,14 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { href: "#about", label: "About" },
-    { href: "#services", label: "Services" },
-    { href: "#why-us", label: "Why Us" },
-    { href: "#contact", label: "Contact" },
+    { href: "/about", label: "About" },
+    { href: "/services", label: "Services" },
+    { href: "/portfolio", label: "Portfolio" },
+    { href: "/contact", label: "Contact" },
   ];
+
+  // Determine text color based on scroll state and page
+  const showLightText = isHomePage && !isScrolled;
 
   return (
     <motion.header
@@ -34,27 +40,37 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2">
-          <span className="font-serif text-2xl font-bold text-primary">
+        <Link to="/" className="flex items-center gap-2">
+          <span className={`font-serif text-2xl font-bold transition-colors duration-300 ${
+            showLightText ? "text-primary-foreground" : "text-primary"
+          }`}>
             Wise<span className="text-accent">Wigle</span>
           </span>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-foreground/70 hover:text-accent transition-colors duration-300"
+              to={link.href}
+              className={`text-sm font-medium transition-colors duration-300 ${
+                showLightText 
+                  ? "text-primary-foreground/70 hover:text-accent" 
+                  : "text-foreground/70 hover:text-accent"
+              } ${location.pathname === link.href ? "text-accent" : ""}`}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
-          <Button variant="ghost" size="sm">
+          <Button 
+            variant="ghost" 
+            size="sm"
+            className={showLightText ? "text-primary-foreground/80 hover:text-accent hover:bg-primary-foreground/10" : ""}
+          >
             Log In
           </Button>
           <Button variant="accent" size="sm">
@@ -64,7 +80,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden p-2 text-foreground"
+          className={`md:hidden p-2 transition-colors ${showLightText ? "text-primary-foreground" : "text-foreground"}`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -83,14 +99,18 @@ const Navbar = () => {
           >
             <nav className="flex flex-col p-4 gap-2">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.href}
-                  href={link.href}
-                  className="px-4 py-3 text-foreground/70 hover:text-accent hover:bg-accent/5 rounded-lg transition-all"
+                  to={link.href}
+                  className={`px-4 py-3 rounded-lg transition-all ${
+                    location.pathname === link.href 
+                      ? "text-accent bg-accent/10" 
+                      : "text-foreground/70 hover:text-accent hover:bg-accent/5"
+                  }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
               <div className="flex flex-col gap-2 pt-4 border-t border-border/50">
                 <Button variant="ghost" className="w-full justify-center">
