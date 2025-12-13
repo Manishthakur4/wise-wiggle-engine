@@ -8,7 +8,10 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const isHomePage = location.pathname === "/";
+
+  // Pages with dark hero sections that need light navbar text
+  const darkHeroPages = ["/", "/about", "/services", "/portfolio", "/contact"];
+  const hasDarkHero = darkHeroPages.includes(location.pathname);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,8 +28,8 @@ const Navbar = () => {
     { href: "/contact", label: "Contact" },
   ];
 
-  // Determine text color based on scroll state and page
-  const showLightText = isHomePage && !isScrolled;
+  // Show light text on dark hero pages when not scrolled
+  const showLightText = hasDarkHero && !isScrolled;
 
   return (
     <motion.header
