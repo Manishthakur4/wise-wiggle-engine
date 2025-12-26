@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight, Mail } from "lucide-react";
-
+import { Link } from "react-router-dom";
 const CTASection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -47,14 +47,18 @@ const CTASection = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="hero" size="xl">
-              Get a Free Consultation
-              <ArrowRight className="ml-1 h-5 w-5" />
-            </Button>
-            <Button variant="heroOutline" size="xl">
-              <Mail className="mr-1 h-5 w-5" />
-              Contact Us
-            </Button>
+            <Link to="/contact">
+              <Button variant="hero" size="xl">
+                Get a Free Consultation
+                <ArrowRight className="ml-1 h-5 w-5" />
+              </Button>
+            </Link>
+            <a href="mailto:hello@wisewigle.com">
+              <Button variant="heroOutline" size="xl">
+                <Mail className="mr-1 h-5 w-5" />
+                Contact Us
+              </Button>
+            </a>
           </div>
         </motion.div>
       </div>

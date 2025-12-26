@@ -69,16 +69,11 @@ const Navbar = () => {
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
-          <Button 
-            variant="ghost" 
-            size="sm"
-            className={showLightText ? "text-primary-foreground/80 hover:text-accent hover:bg-primary-foreground/10" : ""}
-          >
-            Log In
-          </Button>
-          <Button variant="accent" size="sm">
-            Get Started
-          </Button>
+          <Link to="/contact">
+            <Button variant="accent" size="sm">
+              Get Started
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -116,12 +111,11 @@ const Navbar = () => {
                 </Link>
               ))}
               <div className="flex flex-col gap-2 pt-4 border-t border-border/50">
-                <Button variant="ghost" className="w-full justify-center">
-                  Log In
-                </Button>
-                <Button variant="accent" className="w-full justify-center">
-                  Get Started
-                </Button>
+                <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button variant="accent" className="w-full justify-center">
+                    Get Started
+                  </Button>
+                </Link>
               </div>
             </nav>
           </motion.div>
