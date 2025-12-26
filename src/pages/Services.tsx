@@ -12,133 +12,85 @@ import {
   TrendingUp,
   Globe,
   Layers,
-  Brain,
-  Cloud,
-  Shield,
   Zap,
 } from "lucide-react";
 
-const Services = () => {
-  const services = [
-    {
-      icon: Code,
-      title: "Software Development",
-      description: "Custom enterprise solutions built for performance, scalability, and reliability.",
-      features: [
-        "Custom CRM & ERP Development",
-        "AR & VR Immersive Experiences",
-        "Microservices Architecture",
-        "Legacy System Modernization",
-        "API Development & Integration",
-      ],
-      gradient: "from-blue-500/20 to-cyan-500/20",
-    },
-    {
-      icon: Palette,
-      title: "Design & Product Strategy",
-      description: "User-centered design that converts visitors into loyal customers.",
-      features: [
-        "UI/UX Design & Research",
-        "Brand Identity & Guidelines",
-        "3D & CGI Visualization",
-        "Packaging Design",
-        "Design System Development",
-      ],
-      gradient: "from-purple-500/20 to-pink-500/20",
-    },
-    {
-      icon: Smartphone,
-      title: "Mobile Development",
-      description: "Native and cross-platform apps that users love.",
-      features: [
-        "React Native Applications",
-        "Flutter Development",
-        "iOS & Android Native",
-        "Progressive Web Apps (PWA)",
-        "App Store Optimization",
-      ],
-      gradient: "from-orange-500/20 to-red-500/20",
-    },
-    {
-      icon: Globe,
-      title: "Web Development",
-      description: "Fast, secure, and SEO-optimized websites and web applications.",
-      features: [
-        "Custom Web Applications",
-        "E-Commerce Solutions",
-        "CMS Development",
-        "Headless Architecture",
-        "Performance Optimization",
-      ],
-      gradient: "from-emerald-500/20 to-teal-500/20",
-    },
-    {
-      icon: Brain,
-      title: "AI & Machine Learning",
-      description: "Intelligent automation and data-driven insights for your business.",
-      features: [
-        "Custom AI Model Development",
-        "Natural Language Processing",
-        "Computer Vision Solutions",
-        "Predictive Analytics",
-        "AI-Powered Automation",
-      ],
-      gradient: "from-indigo-500/20 to-purple-500/20",
-    },
-    {
-      icon: Layers,
-      title: "Blockchain Development",
-      description: "Decentralized solutions for transparency, security, and trust.",
-      features: [
-        "Smart Contract Development",
-        "DeFi Applications",
-        "NFT Marketplace Development",
-        "Supply Chain Solutions",
-        "Tokenization Services",
-      ],
-      gradient: "from-amber-500/20 to-orange-500/20",
-    },
-    {
-      icon: TrendingUp,
-      title: "Digital Marketing",
-      description: "Data-driven strategies that drive growth and ROI.",
-      features: [
-        "SEO & Content Marketing",
-        "Performance Marketing (PPC)",
-        "Social Media Management",
-        "Email Marketing Automation",
-        "Analytics & Reporting",
-      ],
-      gradient: "from-rose-500/20 to-pink-500/20",
-    },
-    {
-      icon: Cloud,
-      title: "Cloud & DevOps",
-      description: "Scalable infrastructure and streamlined development workflows.",
-      features: [
-        "AWS, Azure, GCP Solutions",
-        "CI/CD Pipeline Setup",
-        "Container Orchestration",
-        "Infrastructure as Code",
-        "24/7 Monitoring & Support",
-      ],
-      gradient: "from-sky-500/20 to-blue-500/20",
-    },
-    {
-      icon: Shield,
-      title: "Cybersecurity",
-      description: "Comprehensive security solutions to protect your digital assets.",
-      features: [
-        "Security Audits & Penetration Testing",
-        "Compliance (GDPR, HIPAA, SOC2)",
-        "Identity & Access Management",
-        "Threat Detection & Response",
-        "Security Training Programs",
-      ],
-      gradient: "from-slate-500/20 to-gray-500/20",
-    },
-  ];
+// Service categories matching the What We Do dropdown
+const serviceCategories = [
+  {
+    icon: Code,
+    title: "Software Development",
+    description: "Custom enterprise solutions built for performance, scalability, and reliability.",
+    gradient: "from-blue-500/20 to-cyan-500/20",
+    services: [
+      { name: "Custom CRM Development", href: "/services/custom-crm-development" },
+      { name: "ERP Software Development", href: "/services/erp-software-development" },
+      { name: "AR/VR Development", href: "/services/ar-vr-development" },
+      { name: "Microservices", href: "/services/microservices" },
+    ],
+  },
+  {
+    icon: Palette,
+    title: "Design & Product Strategy",
+    description: "User-centered design that converts visitors into loyal customers.",
+    gradient: "from-purple-500/20 to-pink-500/20",
+    services: [
+      { name: "UI/UX", href: "/services/ui-ux" },
+      { name: "Packaging Design", href: "/services/packaging-design" },
+      { name: "3D & CGI", href: "/services/3d-cgi" },
+      { name: "Illustration", href: "/services/illustration" },
+    ],
+  },
+  {
+    icon: Smartphone,
+    title: "Mobile App Development",
+    description: "Native and cross-platform apps that users love.",
+    gradient: "from-orange-500/20 to-red-500/20",
+    services: [
+      { name: "React Native Application", href: "/services/react-native" },
+      { name: "Progressive Web Application", href: "/services/pwa" },
+      { name: "Flutter Application", href: "/services/flutter" },
+    ],
+  },
+  {
+    icon: TrendingUp,
+    title: "Digital Marketing",
+    description: "Data-driven strategies that drive growth and ROI.",
+    gradient: "from-rose-500/20 to-pink-500/20",
+    services: [
+      { name: "Search Engine Optimization", href: "/services/seo" },
+      { name: "Email Marketing", href: "/services/email-marketing" },
+      { name: "Content Marketing", href: "/services/content-marketing" },
+      { name: "Performance Marketing", href: "/services/performance-marketing" },
+      { name: "Social Media Marketing", href: "/services/social-media-marketing" },
+    ],
+  },
+  {
+    icon: Globe,
+    title: "Web Development",
+    description: "Fast, secure, and SEO-optimized websites and web applications.",
+    gradient: "from-emerald-500/20 to-teal-500/20",
+    services: [
+      { name: "Website Development", href: "/services/website-development" },
+      { name: "Custom Web Application", href: "/services/custom-web-application" },
+      { name: "CMS Development", href: "/services/cms-development" },
+      { name: "API Development & Integration", href: "/services/api-development" },
+    ],
+  },
+  {
+    icon: Layers,
+    title: "Blockchain Development",
+    description: "Decentralized solutions for transparency, security, and trust.",
+    gradient: "from-amber-500/20 to-orange-500/20",
+    services: [
+      { name: "Supply Chain Solutions", href: "/services/supply-chain-blockchain" },
+      { name: "Identity Management Solutions", href: "/services/identity-management" },
+      { name: "NFT Marketplace", href: "/services/nft-marketplace" },
+    ],
+  },
+];
 
+const Services = () => {
   return (
     <main className="min-h-screen bg-background">
       <Navbar />
@@ -171,9 +123,9 @@ const Services = () => {
       <section className="py-24">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
+            {serviceCategories.map((category, index) => (
               <motion.div
-                key={service.title}
+                key={category.title}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -181,26 +133,34 @@ const Services = () => {
                 className="group rounded-2xl border border-border/50 hover:border-accent/30 overflow-hidden bg-card hover:shadow-xl transition-all duration-500"
               >
                 {/* Header with gradient */}
-                <div className={`p-6 bg-gradient-to-br ${service.gradient} relative`}>
+                <div className={`p-6 bg-gradient-to-br ${category.gradient} relative`}>
                   <div className="w-14 h-14 rounded-xl bg-background/90 flex items-center justify-center">
-                    <service.icon className="w-7 h-7 text-accent" />
+                    <category.icon className="w-7 h-7 text-accent" />
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="p-6">
                   <h3 className="font-serif text-xl text-foreground mb-3 group-hover:text-accent transition-colors">
-                    {service.title}
+                    {category.title}
                   </h3>
                   <p className="text-muted-foreground text-sm mb-6">
-                    {service.description}
+                    {category.description}
                   </p>
                   
                   <ul className="space-y-3">
-                    {service.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-3 text-sm">
-                        <Check className="w-4 h-4 text-accent mt-0.5 shrink-0" />
-                        <span className="text-foreground/80">{feature}</span>
+                    {category.services.map((service) => (
+                      <li key={service.name}>
+                        <Link 
+                          to={service.href}
+                          className="flex items-start gap-3 text-sm group/item hover:text-accent transition-colors"
+                        >
+                          <Check className="w-4 h-4 text-accent mt-0.5 shrink-0" />
+                          <span className="text-foreground/80 group-hover/item:text-accent transition-colors">
+                            {service.name}
+                          </span>
+                          <ArrowRight className="w-3 h-3 opacity-0 group-hover/item:opacity-100 transition-opacity ml-auto mt-1" />
+                        </Link>
                       </li>
                     ))}
                   </ul>
