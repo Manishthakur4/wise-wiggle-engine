@@ -79,17 +79,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = () => {
-      setIsWhatWeDoOpen(false);
-    };
-    if (isWhatWeDoOpen) {
-      document.addEventListener("click", handleClickOutside);
-    }
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, [isWhatWeDoOpen]);
-
   // Close mobile menu on route change
   useEffect(() => {
     setIsMobileMenuOpen(false);
@@ -129,12 +118,12 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           {/* What We Do Dropdown */}
-          <div className="relative">
+          <div 
+            className="relative"
+            onMouseEnter={() => setIsWhatWeDoOpen(true)}
+            onMouseLeave={() => setIsWhatWeDoOpen(false)}
+          >
             <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsWhatWeDoOpen(!isWhatWeDoOpen);
-              }}
               className={`flex items-center gap-1 text-sm font-medium transition-colors duration-300 ${
                 showLightText 
                   ? "text-primary-foreground/70 hover:text-accent" 
@@ -152,42 +141,43 @@ const Navbar = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[800px] p-6 rounded-2xl bg-card border border-border shadow-xl z-50"
-                  onClick={(e) => e.stopPropagation()}
+                  className="absolute top-full left-1/2 -translate-x-1/2 pt-4"
                 >
-                  <div className="grid grid-cols-3 gap-6">
-                    {serviceCategories.map((category) => (
-                      <div key={category.title}>
-                        <h4 className="text-sm font-semibold text-foreground mb-3 pb-2 border-b border-border/50">
-                          {category.title}
-                        </h4>
-                        <ul className="space-y-2">
-                          {category.items.map((item) => (
-                            <li key={item.name}>
-                              <Link
-                                to={item.href}
-                                className="text-sm text-muted-foreground hover:text-accent transition-colors block py-1"
-                                onClick={() => setIsWhatWeDoOpen(false)}
-                              >
-                                {item.name}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-6 pt-4 border-t border-border/50 flex justify-between items-center">
-                    <p className="text-sm text-muted-foreground">
-                      Explore all our services and solutions
-                    </p>
-                    <Link
-                      to="/services"
-                      className="text-sm font-medium text-accent hover:underline"
-                      onClick={() => setIsWhatWeDoOpen(false)}
-                    >
-                      View All Services →
-                    </Link>
+                  <div className="w-[800px] p-6 rounded-2xl bg-card border border-border shadow-xl z-50">
+                    <div className="grid grid-cols-3 gap-6">
+                      {serviceCategories.map((category) => (
+                        <div key={category.title}>
+                          <h4 className="text-sm font-semibold text-foreground mb-3 pb-2 border-b border-border/50">
+                            {category.title}
+                          </h4>
+                          <ul className="space-y-2">
+                            {category.items.map((item) => (
+                              <li key={item.name}>
+                                <Link
+                                  to={item.href}
+                                  className="text-sm text-muted-foreground hover:text-accent transition-colors block py-1"
+                                  onClick={() => setIsWhatWeDoOpen(false)}
+                                >
+                                  {item.name}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-6 pt-4 border-t border-border/50 flex justify-between items-center">
+                      <p className="text-sm text-muted-foreground">
+                        Explore all our services and solutions
+                      </p>
+                      <Link
+                        to="/services"
+                        className="text-sm font-medium text-accent hover:underline"
+                        onClick={() => setIsWhatWeDoOpen(false)}
+                      >
+                        View All Services →
+                      </Link>
+                    </div>
                   </div>
                 </motion.div>
               )}
