@@ -1,36 +1,32 @@
 import { Linkedin, Twitter, Github, Mail } from "lucide-react";
-
+import { Link } from "react-router-dom";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
     Services: [
-      "Software Development",
-      "Mobile Apps",
-      "Web Development",
-      "Digital Marketing",
-      "Blockchain",
+      { name: "Software Development", href: "/services" },
+      { name: "Mobile Apps", href: "/services" },
+      { name: "Web Development", href: "/services" },
+      { name: "Digital Marketing", href: "/services" },
+      { name: "Blockchain", href: "/services" },
     ],
     Company: [
-      "About Us",
-      "Careers",
-      "Blog",
-      "Case Studies",
-      "Contact",
+      { name: "About Us", href: "/about" },
+      { name: "Portfolio", href: "/portfolio" },
+      { name: "Contact", href: "/contact" },
     ],
     Resources: [
-      "Documentation",
-      "Support",
-      "Privacy Policy",
-      "Terms of Service",
+      { name: "Privacy Policy", href: "#" },
+      { name: "Terms of Service", href: "#" },
     ],
   };
 
   const socialLinks = [
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Github, href: "#", label: "GitHub" },
-    { icon: Mail, href: "#", label: "Email" },
+    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+    { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+    { icon: Github, href: "https://github.com", label: "GitHub" },
+    { icon: Mail, href: "mailto:hello@wisewigle.com", label: "Email" },
   ];
 
   return (
@@ -39,11 +35,11 @@ const Footer = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <a href="#" className="inline-block mb-4">
+            <Link to="/" className="inline-block mb-4">
               <span className="font-serif text-2xl font-bold">
                 Wise<span className="text-accent">Wigle</span>
               </span>
-            </a>
+            </Link>
             <p className="text-primary-foreground/60 text-sm mb-6 max-w-xs">
               Building intelligent digital solutions that help businesses scale and thrive.
             </p>
@@ -69,13 +65,13 @@ const Footer = () => {
               </h4>
               <ul className="space-y-3">
                 {links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
+                  <li key={link.name}>
+                    <Link
+                      to={link.href}
                       className="text-sm text-primary-foreground/60 hover:text-accent transition-colors duration-300"
                     >
-                      {link}
-                    </a>
+                      {link.name}
+                    </Link>
                   </li>
                 ))}
               </ul>

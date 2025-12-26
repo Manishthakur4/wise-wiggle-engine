@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   const highlights = [
@@ -61,20 +62,23 @@ const HeroSection = () => {
             to immersive experiences — powered by innovation, strategy, and modern engineering.
           </motion.p>
 
-          {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-wrap gap-4 mb-12"
           >
-            <Button variant="hero" size="xl">
-              Start Your Project
-              <ArrowRight className="ml-1 h-5 w-5" />
-            </Button>
-            <Button variant="heroOutline" size="xl">
-              Explore Our Services
-            </Button>
+            <Link to="/contact">
+              <Button variant="hero" size="xl">
+                Start Your Project
+                <ArrowRight className="ml-1 h-5 w-5" />
+              </Button>
+            </Link>
+            <Link to="/services">
+              <Button variant="heroOutline" size="xl">
+                Explore Our Services
+              </Button>
+            </Link>
           </motion.div>
 
           {/* Highlights */}

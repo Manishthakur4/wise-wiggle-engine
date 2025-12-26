@@ -4,6 +4,7 @@ import CTASection from "@/components/CTASection";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check } from "lucide-react";
+import { Link } from "react-router-dom";
 import {
   Code,
   Palette,
@@ -224,10 +225,12 @@ const Services = () => {
               We specialize in creating tailored solutions for unique business challenges. 
               Let's discuss how we can help you achieve your specific goals.
             </p>
-            <Button variant="accent" size="lg">
-              Schedule a Consultation
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <Link to="/contact">
+              <Button variant="accent" size="lg">
+                Schedule a Consultation
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
           </motion.div>
         </div>
       </section>
